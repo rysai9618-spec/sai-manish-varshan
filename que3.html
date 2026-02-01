@@ -1,20 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    .fontBox {
-      font-family: Arial, sans-serif;
-      font-size: 22px;
-      font-weight: bold;
-      font-style: italic;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Task 3 – Hover Effects</title>
+
+    <style>
+        .box {
+            width: 200px;
+            padding: 15px;
+            margin: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Hover color change */
+        .color {
+            background-color: blue;
+            transition: background-color 0.3s;
+        }
+
+        .color:hover {
+            background-color: green;
+        }
+
+        /* Grow on hover */
+        .grow {
+            background-color: orange;
+            transition: transform 0.3s;
+        }
+
+        .grow:hover {
+            transform: scale(1.2);
+        }
+
+        /* Multiple effects */
+        .effects {
+            background-color: purple;
+            transition: all 0.3s;
+        }
+
+        .effects:hover {
+            background-color: black;
+            font-size: 20px;
+            box-shadow: 5px 5px 15px gray;
+        }
+
+        /* Reveal content */
+        .reveal-text {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .reveal:hover .reveal-text {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
 
-<p class="fontBox">
-  Font styling example
-</p>
+<div class="box color">Hover Color</div>
+
+<div class="box grow">Grow on Hover</div>
+
+<div class="box effects">Multiple Effects</div>
+
+<div class="box reveal" style="background-color: teal;">
+    Hover to Reveal
+    <p class="reveal-text">Hello! I appeared </p>
+</div>
 
 </body>
 </html>
