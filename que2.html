@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    .bgBox {
-      background-color: lightgreen;
-      background-image: url("bg.jpg");
-      background-size: cover;
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Task 2 – Responsive Design</title>
+
+    <style>
+        .box {
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: lightblue;
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5vw;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-color: lightcoral;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="bgBox">
-  Background color and image example
+<h1>Responsive Heading</h1>
+
+<div class="box">
+    hi sla students
 </div>
 
 </body>
 </html>
-
