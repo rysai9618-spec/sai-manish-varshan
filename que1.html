@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Task 1 – Semantic Elements</title>
+    <title>Task 1</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        .box {
+            width: 80%;
+            max-width: 600px;
+            background-color: skyblue;
+            padding: 20px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-color: lightcoral;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <h1>My Website</h1>
-    <img src="https://via.placeholder.com/80" alt="Logo">
-</header>
-
-<nav>
-    <a href="#home">Home</a> |
-    <a href="#blog">Blog</a> |
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="home">
-    <h2>Section Content</h2>
-    <p>This is grouped content using section.</p>
-
-    <article>
-        <h3>Article Content</h3>
-        <p>This is independent, standalone content.</p>
-    </article>
-</section>
-
-<footer>
-    <p>© 2026 My Website</p>
-</footer>
+<div class="box">
+    hi everyone
+</div>
 
 </body>
 </html>
