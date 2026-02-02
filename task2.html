@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+/* 1. p.para1, p#para1, #para1 p */
+p.para1 { color: blue; }
+p#para1 { color: red; }
+#para1 p { color: green; }
+
+/* 2. div span, div > span */
+div span { background: yellow; }
+div > span { border: 1px solid black; }
+
+/* 3. !important */
+.test { color: purple; }
+.force { color: orange !important; }
+
+/* 4. ::before & ::after */
+.box::before { content: "Hi "; }
+.box::after { content: " Bye"; }
+
+/* 5. a states */
+a:hover { color: red; }
+a:active { color: green; }
+
+</style>
+</head>
+<body>
+
+<p class="para1">p.para1</p>
+<p id="para1">p#para1</p>
+
+<div id="para1">
+  <p>#para1 p</p>
+</div>
+
+<div>
+  <span>Direct span</span>
+  <p><span>Nested span</span></p>
+</div>
+
+<p class="test force">!important</p>
+
+<p class="box">Text</p>
+
+<a href="#">Link</a>
+
+</body>
+</html>
