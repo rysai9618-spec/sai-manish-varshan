@@ -1,7 +1,5 @@
-const num = 10;
-function showValue() {
-    let x = 5;
-    console.log("Let value:", x);
-}
-showValue();
-console.log("Const value:", num);
+let name = "Jos";        
+let age = 20;            
+let isStudent = true;   
+let emptyValue = null;   
+let notAssigned;         
