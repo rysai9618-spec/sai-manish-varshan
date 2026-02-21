@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<html>
+<head>
+    <title>Form Local Storage</title>
+</head>
 <body>
-    <main>
-        <article>
-            <h4>bcci</h4>
-            <p>harshit rana is ruled out from the t20 world cup</p>
-        </article>
-        <section>
-            <h4>john@@123</h4>
-            <p>its an great newfor the india</p>
-        </section>
-    </main>
+
+<h2>Student Form</h2>
+
+<form id="myForm">
+    Name: <input type="text" id="name" required><br><br>
+    Email: <input type="email" id="email" required><br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    const form = document.getElementById("myForm");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); 
+       
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+
+        
+        const userData = {
+            name: name,
+            email: email
+        };
+
+        
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        alert("Danger in local storage !");
+        form.reset();
+    });
+</script>
+
 </body>
 </html>
