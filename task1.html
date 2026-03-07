@@ -4,43 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<html>
-<head>
-    <title>Form Local Storage</title>
-</head>
-<body>
-
-<h2>Student Form</h2>
-
-<form id="myForm">
-    Name: <input type="text" id="name" required><br><br>
-    Email: <input type="email" id="email" required><br><br>
-    <button type="submit">Submit</button>
-</form>
-
+<button onclick="addElement()">Click Me</button>
 <script>
-    const form = document.getElementById("myForm");
-
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); 
-       
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-
-        
-        const userData = {
-            name: name,
-            email: email
-        };
-
-        
-        localStorage.setItem("user", JSON.stringify(userData));
-
-        alert("Danger in local storage !");
-        form.reset();
-    });
+function addElement() {
+    let div = document.createElement("div");   
+    div.innerHTML = "click me";
+    document.body.appendChild(div);            
 </script>
-
 </body>
 </html>
