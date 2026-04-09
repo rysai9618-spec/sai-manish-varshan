@@ -1,110 +1,55 @@
-import React,{useState} from "react";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { Provider, useSelector, useDispatch } from "react-redux";
-const counterSlice = createSlice({
-name:"counter",
-initialState:{value:0},
-reducers:{
-increment:(state)=>{
-state.value +=1
-},
-decrement:(state)=>{
-state.value -=1
-}
-}
-});
-const todosSlice = createSlice({
-name:"todos",
-initialState:{todos:[]},
-reducers:{
-addTodo:(state,action)=>{
-state.todos.push({
-id:Date.now(),
-text:action.payload,
-completed:false
-})
-},
-toggleTodo:(state,action)=>{
-const todo = state.todos.find(
-todo=>todo.id===action.payload
+import React, { useState } from "react";
+function ProductList() {
+const [products] = useState([
+{ id: 1, name: "Laptop" },
+{ id: 2, name: "Mobile" },
+{ id: 3, name: "Headphones" },
+{ id: 4, name: "Keyboard" }
+]);
+const [view, setView] = useState("grid");
+const [filter, setFilter] = useState("");
+const [hovered, setHovered] = useState(null);
+const filteredProducts = products.filter(product =>
+product.name.toLowerCase().includes(filter.toLowerCase())
 );
-if(todo){
-todo.completed=!todo.completed
-}
-}
-}
-});
-const store = configureStore({
-reducer:{
-counter:counterSlice.reducer,
-todos:todosSlice.reducer
-}
-});
-function ManApp(){
-const count = useSelector(
-(state)=>state.counter.value
-);
-const todos = useSelector(
-(state)=>state.todos.todos
-);
-const dispatch = useDispatch();
-const [text,setText]=useState("");
-return(
-<div style={{textAlign:"center"}}>
-<h1>Redux Toolkit Example</h1>
-<h2>Counter : {count}</h2>
-<button onClick={()=>
-dispatch(counterSlice.actions.increment())
-}>
-Increment
-</button>
-<button onClick={()=>
-dispatch(counterSlice.actions.decrement())
-}>
-Decrement
-</button>
-<hr/>
-<h2>Todo List</h2>
+return (
+<div>
 <input
-value={text}
-onChange={(e)=>
-setText(e.target.value)
-}
+type="text"
+placeholder="Search product"
+onChange={(e)=>setFilter(e.target.value)}
 />
-<button onClick={()=>{
-dispatch(
-todosSlice.actions.addTodo(text)
-);
-setText("");
-}}>
-Add
+<button onClick={() => setView(view === "grid" ? "list" : "grid")}>
+Toggle View
 </button>
 {
-todos.map((todo)=>(
-<p
-key={todo.id}
-onClick={()=>dispatch(
-todosSlice.actions.toggleTodo(todo.id)
-)}
+filteredProducts.length === 0 ?
+<p>No products available</p>
+:
+<div style={{
+display:"grid",
+gridTemplateColumns: view==="grid" ? "repeat(3,1fr)" : "repeat(1,1fr)",
+gap:"10px"
+}}>
+{
+filteredProducts.map(product => (
+<div
+key={product.id}
+onMouseEnter={()=>setHovered(product.id)}
+onMouseLeave={()=>setHovered(null)}
 style={{
-cursor:"pointer",
-textDecoration:
-todo.completed ?
-"line-through":"none"
+padding:"10px",
+border:"1px solid black",
+backgroundColor: hovered===product.id ? "lightgray" : "white"
 }}
 >
-{todo.text}
-</p>
+{product.name}
+</div>
 ))
 }
 </div>
-);
-)
-function App(){
-return(
-<Provider store={store}>
-<MainApp/>
-</Provider>
+}
+</div>
 );
 }
-export default App;
+export default ProductList;
