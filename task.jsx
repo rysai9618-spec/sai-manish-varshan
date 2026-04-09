@@ -1,55 +1,111 @@
 import React, { useState } from "react";
-function ProductList() {
-const [products] = useState([
-{ id: 1, name: "Laptop" },
-{ id: 2, name: "Mobile" },
-{ id: 3, name: "Headphones" },
-{ id: 4, name: "Keyboard" }
-]);
-const [view, setView] = useState("grid");
-const [filter, setFilter] = useState("");
-const [hovered, setHovered] = useState(null);
-const filteredProducts = products.filter(product =>
-product.name.toLowerCase().includes(filter.toLowerCase())
-);
-return (
-<div>
-<input
-type="text"
-placeholder="Search product"
-onChange={(e)=>setFilter(e.target.value)}
-/>
-<button onClick={() => setView(view === "grid" ? "list" : "grid")}>
-Toggle View
-</button>
-{
-filteredProducts.length === 0 ?
-<p>No products available</p>
-:
-<div style={{
-display:"grid",
-gridTemplateColumns: view==="grid" ? "repeat(3,1fr)" : "repeat(1,1fr)",
-gap:"10px"
-}}>
-{
-filteredProducts.map(product => (
-<div
-key={product.id}
-onMouseEnter={()=>setHovered(product.id)}
-onMouseLeave={()=>setHovered(null)}
-style={{
-padding:"10px",
-border:"1px solid black",
-backgroundColor: hovered===product.id ? "lightgray" : "white"
-}}
->
-{product.name}
-</div>
-))
+function TextInput({label,type,name,value,onChange,error}) {
+  return (
+    <div>
+      <label>{label}</label><br/>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      <p style={{color:"red"}}>{error}</p>
+      <br/>
+    </div>
+  );
 }
-</div>
+function App(){
+  const initialState={
+    name:"",
+    email:"",
+    password:""
+  };
+  const[formData,setFormData]=useState(initialState);
+  const[errors,setErrors]=useState({});
+  const[submittedData,setSubmittedData]=useState(null);
+  function handleChange(e){
+    const{name,value}=e.target;
+    setFormData({
+      ...formData,
+      [name]:value
+    });
+    validate(name,value);
+  }
+  function validate(name,value){
+    let errorMsg="";
+    if(!value){
+      errorMsg="This field is required";
+    }
+    if(name==="email"){
+      const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(value && !emailPattern.test(value)){
+        errorMsg="Invalid email format";
+      }
+    }
+    setErrors({
+      ...errors,
+      [name]:errorMsg
+    });
+  }
+  function handleSubmit(e){
+    e.preventDefault();
+    setSubmittedData(formData);
+  }
+  function handleClear(){
+    setFormData(initialState);
+    setErrors({});
+    setSubmittedData(null);
+  }
+  const isValid=
+    formData.name &&
+    formData.email &&
+    formData.password &&
+    !errors.name &&
+    !errors.email &&
+    !errors.password;
+  return(
+    <>
+    <h2>Signup Form</h2>
+    <form onSubmit={handleSubmit}>
+      <TextInput
+        label="Name"
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        error={errors.name}
+      />
+      <TextInput
+        label="Email"
+        type="text"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        error={errors.email}
+      />
+      <TextInput
+        label="Password"
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        error={errors.password}
+      />
+      <button type="submit" disabled={!isValid}>
+        Submit
+      </button>
+      <button type="button" onClick={handleClear}>
+      </button>
+    </form>
+    {submittedData && (
+      <div>
+        <h3>Preview</h3>
+        <p>Name: {submittedData.name}</p>
+        <p>Email: {submittedData.email}</p>
+        <p>Password: {submittedData.password}</p>
+      </div>
+    )}
+    </>
+  );
 }
-</div>
-);
-}
-export default ProductList;
+export default App;
