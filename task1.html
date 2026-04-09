@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<button onclick="addElement()">Click Me</button>
-<script>
-function addElement() {
-    let div = document.createElement("div");   
-    div.innerHTML = "click me";
-    document.body.appendChild(div);            
-</script>
+    <title>Bootstrap Components Example</title>
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    
+    <h3 class="text-center mb-3"></h3>
+    <div class="row text-center">
+        <div class="col-md-4 bg-primary text-white p-3">Column 1</div>
+        <div class="col-md-4 bg-success text-white p-3">Column 2</div>
+        <div class="col-md-4 bg-warning text-dark p-3">Column 3</div>
+    </div>
+
+   
+    <h3 class="mt-5"></h3>
+    <div class="alert alert-success">
+        life is too short.
+    </div>
+    <div class="alert alert-danger">
+        you should aware
+    </div>
+
+   
+    <h3 class="mt-5"> </h3>
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-success">Success</button>
+
+   
+    <h3 class="mt-5"> </h3>
+    <div class="p-3 mb-3 bg-dark text-white text-center rounded">
+       this is to inform that ind vs wi match is going to happen on this sunday
+    </div>
+
+  
+    <h3 class="mt-5"></h3>
+    <div class="card" style="width: 18rem;">
+        <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h5 class="card-title">powerstar</h5>
+            <p class="card-text">
+               hello india
+            </p>
+            <a href="#" class="btn btn-primary">more</a>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
